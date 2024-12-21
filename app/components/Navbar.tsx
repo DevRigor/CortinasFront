@@ -4,73 +4,114 @@ import { useState } from "react";
 import Link from "next/link";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-primary text-white relative">
-      <div className="container mx-auto flex justify-between items-center py-4 px-4 md:px-8">
-        {/* Logo */}
-        <Link href="/" className="text-2xl font-bold">
-          Cortinas Siglo XXI
-        </Link>
+    <nav className="bg-gray-800">
+      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div className="relative flex h-16 items-center justify-between">
+          {/* Botón Hamburguesa (Mobile Menu) */}
+          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <button
+              type="button"
+              className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-controls="mobile-menu"
+              aria-expanded={isMobileMenuOpen}
+            >
+              <span className="sr-only">Abrir menú principal</span>
+              {isMobileMenuOpen ? (
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
 
-        {/* Botón Hamburguesa */}
-        <button
-          className="block md:hidden focus:outline-none"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d={
-                isMenuOpen
-                  ? "M6 18L18 6M6 6l12 12" // Ícono "Cerrar"
-                  : "M4 6h16M4 12h16M4 18h16" // Ícono "Hamburguesa"
-              }
-            />
-          </svg>
-        </button>
+          {/* Logo */}
+          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+            <Link href="/" className="text-2xl font-bold text-white">
+              Cortinas Siglo XXI
+            </Link>
+          </div>
 
-        {/* Menú de Navegación */}
-        <ul
-          className={`absolute left-0 top-full w-full bg-primary md:static md:w-auto md:flex md:space-x-6 ${
-            isMenuOpen ? "block" : "hidden"
-          }`}
-        >
-          <li>
+          {/* Menú principal (visible en pantallas grandes) */}
+          <div className="hidden sm:ml-6 sm:block">
+            <div className="flex space-x-4">
+              <Link
+                href="/"
+                className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              >
+                Inicio
+              </Link>
+              <Link
+                href="/products"
+                className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              >
+                Productos
+              </Link>
+              <Link
+                href="/contact"
+                className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              >
+                Contacto
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Menú móvil */}
+      {isMobileMenuOpen && (
+        <div className="sm:hidden" id="mobile-menu">
+          <div className="space-y-1 px-2 pb-3 pt-2">
             <Link
               href="/"
-              className="block py-2 px-4 md:py-0 hover:text-secondary"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
             >
               Inicio
             </Link>
-          </li>
-          <li>
             <Link
               href="/products"
-              className="block py-2 px-4 md:py-0 hover:text-secondary"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
             >
               Productos
             </Link>
-          </li>
-          <li>
             <Link
               href="/contact"
-              className="block py-2 px-4 md:py-0 hover:text-secondary"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
             >
               Contacto
             </Link>
-          </li>
-        </ul>
-      </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
