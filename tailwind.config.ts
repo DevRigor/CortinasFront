@@ -9,12 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        primary: "#1d4ed8", // Azul
-        secondary: "#f97316", // Naranja
-        neutral: "#111827", // Gris oscuro
-        accent: "#9333ea", // Morado
+        background: "var(--background)", // Fondo global (puedes mantenerlo dinámico)
+        foreground: "var(--foreground)", // Texto global (puedes mantenerlo dinámico)
+
+        // Colores extraídos del logo
+        primary: "#e7e7e9", // Color gris claro dominante
+        secondary: "#e7e7e8", // Segundo tono de gris claro
+        accent1: "#e7e6e9", // Acento 1 (gris claro con sutil variación)
+        accent2: "#e7e6ea", // Acento 2 (gris claro con otro matiz)
+        neutral: "#e7e7e7", // Color neutral extraído
+
+        // Colores adicionales (si los necesitas)
+        blueAccent: "#1d4ed8", // Azul (ejemplo para un botón o acción)
+        orangeAccent: "#f97316", // Naranja (acción secundaria o advertencias)
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"], // Fuente personalizada
@@ -28,4 +35,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;

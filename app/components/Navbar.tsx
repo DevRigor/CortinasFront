@@ -7,7 +7,7 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-gray-800">
+    <nav className="bg-[#04114e]">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           {/* Botón Hamburguesa (Mobile Menu) */}
@@ -56,8 +56,18 @@ export default function Navbar() {
 
           {/* Logo */}
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <Link href="/" className="text-2xl font-bold text-white">
-              Cortinas Siglo XXI
+            <Link
+              href="/"
+              className="flex items-center justify-center space-x-2"
+            >
+              <img
+                src="/assets/logo.png"
+                alt="logo"
+                className="h-10 w-auto max-w-full"
+              />
+              <span className="text-2xl font-bold text-white">
+                Cortinas Siglo XXI
+              </span>
             </Link>
           </div>
 
